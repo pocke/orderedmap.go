@@ -101,12 +101,13 @@ func getVal(dec *json.Decoder) (any, error) {
 			return om, err
 		case ']':
 			return nil, endOfSliceError
+		default:
+			panic("unreachable code")
 		}
 	default:
 		return tok, nil
 	}
 
-	panic("unreachable code")
 }
 
 var _ json.Marshaler = &omap{}
