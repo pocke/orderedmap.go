@@ -48,4 +48,8 @@ func TestUnmarshalJSON(t *testing.T) {
 	if gotBody["bar"] != any("2") {
 		t.Errorf("bar should be 2")
 	}
+
+	t.Logf("%+v", m)
+	foobar, _ := m.Get("foobar")
+	t.Logf("%+v", foobar)
 }
