@@ -40,6 +40,13 @@ func (m *omap) UnmarshalJSON(b []byte) error {
 	dec := json.NewDecoder(bytes.NewReader(b))
 
 	dec.Token() // {
+	m.unmarshalJSON(dec)
+	dec.Token() // }
+
+	return nil
+}
+
+func (m *omap) unmarshalJSON(dec *json.Decoder) error {
 	for dec.More() {
 		t, err := dec.Token()
 		if err != nil {
@@ -60,8 +67,6 @@ func (m *omap) UnmarshalJSON(b []byte) error {
 			}
 		}
 	}
-	dec.Token() // }
-
 	return nil
 }
 
