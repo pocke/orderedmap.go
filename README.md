@@ -1,6 +1,8 @@
 orderedmap.go
 ===============
 
+[![Build Status](https://travis-ci.org/pocke/orderedmap.go.svg)](https://travis-ci.org/pocke/orderedmap.go)
+
 Installation
 -----------
 
