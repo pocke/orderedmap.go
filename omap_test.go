@@ -20,3 +20,5 @@ func TestMap(t *testing.T) {
 		t.Errorf("should not be exist, but exist")
 	}
 }
+
+var _ Map = &omap{}

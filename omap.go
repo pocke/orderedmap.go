@@ -18,8 +18,6 @@ type omap struct {
 	body map[string]any
 }
 
-var _ Map = &omap{}
-
 func New() Map {
 	return &omap{
 		keys: make([]string, 0),

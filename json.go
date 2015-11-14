@@ -6,7 +6,7 @@ import (
 	"fmt"
 )
 
-var endOfSliceError = fmt.Errorf("End of slice")
+var endOfSlice = fmt.Errorf("End of slice")
 
 func (m *omap) MarshalJSON() ([]byte, error) {
 	buf := bytes.NewBuffer([]byte{'{'})
@@ -70,7 +70,7 @@ func decToSlice(dec *json.Decoder) ([]any, error) {
 
 	for {
 		v, err := getVal(dec)
-		if err == endOfSliceError {
+		if err == endOfSlice {
 			return res, nil
 		}
 		if err != nil {
@@ -100,15 +100,13 @@ func getVal(dec *json.Decoder) (any, error) {
 			_, err = dec.Token() // }
 			return om, err
 		case ']':
-			return nil, endOfSliceError
+			return nil, endOfSlice
+		case '}':
+			return nil, fmt.Errorf("unexpected '}'")
 		default:
 			panic("unreachable code")
 		}
 	default:
 		return tok, nil
 	}
-
 }
-
-var _ json.Marshaler = &omap{}
-var _ json.Unmarshaler = &omap{}

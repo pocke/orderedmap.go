@@ -1,6 +1,7 @@
 package omap
 
 import (
+	"encoding/json"
 	"reflect"
 	"testing"
 )
@@ -53,3 +54,6 @@ func TestUnmarshalJSON(t *testing.T) {
 	foobar, _ := m.Get("foobar")
 	t.Logf("%+v", foobar)
 }
+
+var _ json.Marshaler = &omap{}
+var _ json.Unmarshaler = &omap{}
